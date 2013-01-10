@@ -1,0 +1,161 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define INF 1000000;
+#define numOfWorms 32
+
+int numOfSystems = 0;
+int numOfWormholes = 0;
+
+typedef struct
+{
+	int u;
+	int v;
+	int w;
+} Wormhole;
+
+//Fix argument
+int bellmanFord(int v, int wormholes [numOfWormholes * numOfWormholes])
+{
+
+}
+
+int main()
+{
+	int numOfCases = 0;
+	//int numOfSystems = 0;
+	//int numOfWormholes = 0;
+
+	scanf("%d", &numOfCases);
+	while(numOfCases > 0)
+	{
+		scanf("%d", &numOfSystems); 						// Read in number of star systems
+		scanf("%d", &numOfWormholes); 					// Read in number of wormholes
+
+												// Read in each wormhole as a new wormhole in an array
+		//int matrix [numOfSystems + 1][numOfSystems + 1];
+		//int distances [numOfSystems + 1][numOfSystems + 1];
+
+		Wormhole wormholes[numOfWormholes * numOfWormholes];
+
+		int i = 0;
+		int j = 0;
+
+		/*for(i = 0; i < numOfSystems; i++)
+		{
+			for(j = 0; j <= numOfSystems; j++)
+			{
+				matrix [i][j] = 0;
+				distances [i][j] = INF;
+			}
+		}*/
+
+
+		int holder = 0;
+		while (holder < numOfWormholes)
+		{
+			int x = 0;
+			int y = 0;
+			int t = 0;
+			scanf("%d", &x);
+			scanf("%d", &y);
+			scanf("%d", &t);
+
+			//matrix [x][y] = 1;
+			//distances [x][y] = t;
+			
+			wormholes[holder].u = x;
+			wormholes[holder].v = y;
+			wormholes[holder].w = t;
+			holder++;
+		}
+
+		/*for(i = 0; i < numOfWormholes; i++)
+		{
+			printf("%d %d %d\n", wormholes[i].u, wormholes[i].v, wormholes[i].w);
+		}*/
+
+		int d[numOfSystems];
+		int possible = 0;	
+
+		for(i = 0; i < numOfWormholes; ++i)
+		{
+			d[i] = INF;
+		}
+
+		d[0] = 0;
+
+		for(i = 0; i < numOfSystems; ++i)
+		{
+			for(j = 0; j < holder; ++j)
+			{
+				if(d[wormholes[j].u] + wormholes[j].w < d[wormholes[j].v])
+				{
+					d[wormholes[j].v] = d[wormholes[j].u] + wormholes[j].w;
+					if(i == numOfSystems - 1)
+						possible = 1;
+						
+				}
+			}
+		}
+
+	
+		/*for(i = 0; i < numOfSystems; ++i)
+		{
+			printf("to %d\t", i + 1);
+		}
+		printf("\n");
+		for(i = 0; i < numOfSystems; ++i)
+		{
+			printf("%d\t", d[i]);
+		} 
+		printf("\n");*/
+
+		if(possible == 1)
+		{
+			printf("possible\n");
+		}
+		else
+		{
+			printf("not possible\n");
+		}
+
+
+
+		/* // Bellman Ford
+		int bellman[numOfSystems + 1];
+		bellman[0] = 0;
+		for(i = 1; i <= numOfSystems; i++)
+		{
+			bellman[i] = INF;
+		}
+		
+		// Just need to figure out how to do the relaxations, and then do it n - 1 times. Also figure out what a negative cycle will be?
+
+		for(i = 1; i < numOfSystems; i++)
+		{
+			int a = bellman[i] ;
+		} */
+		numOfCases--;
+	}
+}
+
+		/*printf("\n\n\n");
+		for(i = 0; i <= numOfSystems; i++)
+		{
+			for(j = 0; j <= numOfSystems; j++)
+			{
+				printf("%d ", matrix [i][j]);
+			}
+			printf("\n");
+		}
+		printf("\n\n\n");
+		for(i = 0; i <= numOfSystems; i++)
+		{
+			for(j = 0; j <= numOfSystems; j++)
+			{
+				printf("%d ", distances [i][j]);
+			}
+			printf("\n");
+		}*/
+		
